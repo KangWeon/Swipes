@@ -11,10 +11,6 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var label: UILabel!
-    private var gestureStartPoint: CGPoint!
-    
-    private static let minimumGestureLength = Float(25.0)
-    private static let maximumVariance = Float(5)
     
     override func viewDidLoad() {
         super.viewDidLoad()
