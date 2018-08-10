@@ -11,17 +11,22 @@ import UIKit
 class ViewController: UIViewController {
 
     @IBOutlet var label: UILabel!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        let vertical = UISwipeGestureRecognizer(target: self, action: #selector(reportVerticalSwipe))
-        vertical.direction = [.up, .down]
-        view.addGestureRecognizer(vertical)
-        
-        let horizontal = UISwipeGestureRecognizer(target: self, action: #selector(reportHorizontalSwipe))
-        horizontal.direction = [.left, .right]
-        view.addGestureRecognizer(horizontal)
+        for touchCount in 0..<5 {
+            let vertical = UISwipeGestureRecognizer(target: self, action: #selector(reportVerticalSwipe))
+            vertical.direction = [.up, .down]
+            vertical.numberOfTouchesRequired = touchCount
+            view.addGestureRecognizer(vertical)
+
+            let horizontal = UISwipeGestureRecognizer(target: self, action: #selector(reportHorizontalSwipe))
+            horizontal.direction = [.left, .right]
+            horizontal.numberOfTouchesRequired = touchCount
+            view.addGestureRecognizer(horizontal)
+        }
     }
 
     @objc func reportHorizontalSwipe(_ recognizer:UIGestureRecognizer) {
